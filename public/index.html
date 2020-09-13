@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Web App</title>
+</head>
+
+<body>
+  <h1>Hello world</h2>
+
+    <button type="button" onclick="returnUsers(users)">Show Users</button>
+
+    <table class="user-table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>State</td>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+
+    <script type="text/javascript">
+      const users = [{
+          uid: 001,
+          email: 'john@dev.com',
+          personalInfo: {
+            name: 'John',
+            address: {
+              line1: 'westwish st',
+              line2: 'washmasher',
+              city: 'wallas',
+              state: 'WX'
+            }
+          }
+        },
+        {
+          uid: 063,
+          email: 'a.abken@larobe.edu.au',
+          personalInfo: {
+            name: 'amin',
+            address: {
+              line1: 'Heidelberg',
+              line2: '',
+              city: 'Melbourne',
+              state: 'VIC'
+            }
+          }
+        },
+        {
+          uid: 045,
+          email: 'Linda.Paterson@gmail.com',
+          personalInfo: {
+            name: 'Linda',
+            address: {
+              line1: 'Cherry st',
+              line2: 'Kangaroo Point',
+              city: 'Brisbane',
+              state: 'QLD'
+            }
+          }
+        }
+      ]
+
+      function returnUsers(users) {
+        if (users && users.length > 0) {
+          let userDetails = '';
+          users.forEach(user => {
+            userDetails += `<tr>
+          <td>${user.personalInfo.name}</td>
+          <td>${user.email}</td>
+          <td>${user.personalInfo.address.state}</td>
+          </tr>`
+          });
+          document.querySelector('.user-table tbody').innerHTML = userDetails;
+          document.querySelector('.user-table').style.display = 'table';
+        }
+        return users
+      }
+    </script>
+</body>
+
+</html>

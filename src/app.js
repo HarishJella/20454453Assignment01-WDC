@@ -4,8 +4,8 @@
 // app and set up routes which will respond to requests from the client's
 // web browser.
 
-const path = require('path');
-const express = require('express');
+const path = require("path");
+const express = require("express");
 
 // Create a new Express app
 const app = express();
@@ -13,10 +13,10 @@ const app = express();
 // Serve up our static assets from 'dist' (this includes our client-side
 // bundle of JavaScript). These assets are referred to in the HTML using
 // <link> and <script> tags.
-app.use('/assets', express.static(path.resolve(__dirname, '..', 'dist')));
+app.use("/", express.static(path.resolve(__dirname, "..", "public")));
 
 // Set up the index route
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   // The HTML is pretty barebones, it just provides a mount point
   // for React and links to our styles and scripts.
   const htmlContent = `
@@ -33,7 +33,8 @@ app.get('/', (req, res) => {
     </html>`;
 
   // Respond with the HTML
-  res.send(htmlContent);
+  // res.send(htmlContent);
+  res.redirect("/public/index.html", { root: __dirname + "/.." });
 });
 
 // Export the Express app
