@@ -11,7 +11,11 @@
 <body>
   <h1>Hello world</h2>
 
-    <button type="button" onclick="returnUsers(users)">Show Users</button>
+    <div>
+      <button type="button" onclick="returnUsers(users)">Show Users</button>
+      <button type="button" onclick="returnUsers(users,'name')">Sort Users</button>
+
+    </div>
 
     <table class="user-table">
       <thead>
@@ -68,8 +72,13 @@
         }
       ]
 
-      function returnUsers(users) {
+      function returnUsers(users, sort) {
         if (users && users.length > 0) {
+          if (sort && sort !== '' && sort === 'name') {
+            users.sort((a, b) => a.personalInfo.name.toLowerCase() < b.personalInfo.name.toLowerCase() ? -1 : b
+              .personalInfo.name.toLowerCase() > a.personalInfo
+              .name.toLowerCase() ? 1 : 0);
+          }
           let userDetails = '';
           users.forEach(user => {
             userDetails += `<tr>
